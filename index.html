@@ -1,0 +1,434 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Radius — Talk to the people near you</title>
+<meta name="description" content="Radius is a proximity voice chat app. Tap to talk to drivers, runners, and neighbors within your radius — no accounts, no follows, just voices nearby.">
+<meta property="og:title" content="Radius — Talk to the people near you">
+<meta property="og:description" content="Proximity voice chat. Real-time. No accounts.">
+<meta property="og:type" content="website">
+<link rel="icon" type="image/png" href="radius-icon-512.png">
+<style>
+  :root {
+    --navy: #0e153a;
+    --teal: #00b4c8;
+    --teal-bright: #22d3ee;
+    --ink: #0a0f28;
+    --paper: #f5f9fb;
+    --muted: rgba(255,255,255,0.65);
+    --card: rgba(255,255,255,0.06);
+    --card-border: rgba(255,255,255,0.12);
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Text', 'Inter', system-ui, sans-serif;
+    background: linear-gradient(135deg, var(--navy) 0%, #0a1a3a 40%, #063340 100%);
+    color: #fff;
+    min-height: 100vh;
+    line-height: 1.55;
+    -webkit-font-smoothing: antialiased;
+    overflow-x: hidden;
+  }
+  .wrap { max-width: 1100px; margin: 0 auto; padding: 0 24px; }
+
+  /* Nav */
+  nav {
+    padding: 28px 0;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  .brand {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-weight: 700;
+    font-size: 1.1rem;
+    letter-spacing: -0.01em;
+  }
+  .brand img { width: 32px; height: 32px; border-radius: 8px; }
+  nav .links { display: flex; gap: 28px; }
+  nav .links a { color: var(--muted); text-decoration: none; font-size: 0.95rem; transition: color 0.2s; }
+  nav .links a:hover { color: #fff; }
+
+  /* Hero */
+  .hero {
+    padding: 60px 0 100px;
+    text-align: center;
+    position: relative;
+  }
+  .hero::before {
+    content: "";
+    position: absolute;
+    top: -200px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 800px;
+    height: 800px;
+    background: radial-gradient(circle, rgba(0,180,200,0.2) 0%, transparent 60%);
+    pointer-events: none;
+    z-index: 0;
+  }
+  .hero > * { position: relative; z-index: 1; }
+  .hero-icon {
+    width: 120px;
+    height: 120px;
+    border-radius: 28px;
+    margin-bottom: 32px;
+    box-shadow: 0 20px 60px rgba(0,180,200,0.3), 0 0 0 1px rgba(255,255,255,0.08);
+  }
+  h1 {
+    font-size: clamp(2.5rem, 6vw, 4.5rem);
+    font-weight: 800;
+    letter-spacing: -0.035em;
+    line-height: 1.05;
+    margin-bottom: 20px;
+    background: linear-gradient(180deg, #fff 0%, #b8e5ed 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+  .tagline {
+    font-size: clamp(1.1rem, 2vw, 1.4rem);
+    color: var(--muted);
+    max-width: 620px;
+    margin: 0 auto 40px;
+  }
+  .cta-row {
+    display: flex;
+    gap: 14px;
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 14px 28px;
+    border-radius: 999px;
+    font-weight: 600;
+    font-size: 1rem;
+    text-decoration: none;
+    transition: transform 0.15s, box-shadow 0.15s;
+    border: none;
+    cursor: pointer;
+  }
+  .btn-primary {
+    background: linear-gradient(135deg, var(--teal-bright), var(--teal));
+    color: var(--ink);
+    box-shadow: 0 8px 24px rgba(0,180,200,0.4);
+  }
+  .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 12px 32px rgba(0,180,200,0.5); }
+  .btn-ghost {
+    background: rgba(255,255,255,0.08);
+    color: #fff;
+    border: 1px solid rgba(255,255,255,0.15);
+  }
+  .btn-ghost:hover { background: rgba(255,255,255,0.14); }
+
+  /* Features */
+  .features {
+    padding: 60px 0;
+  }
+  .section-title {
+    text-align: center;
+    font-size: clamp(1.8rem, 3.5vw, 2.5rem);
+    font-weight: 700;
+    letter-spacing: -0.02em;
+    margin-bottom: 12px;
+  }
+  .section-sub {
+    text-align: center;
+    color: var(--muted);
+    margin-bottom: 56px;
+  }
+  .grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 20px;
+  }
+  .card {
+    background: var(--card);
+    border: 1px solid var(--card-border);
+    border-radius: 20px;
+    padding: 32px 28px;
+    backdrop-filter: blur(10px);
+    transition: transform 0.2s, border-color 0.2s;
+  }
+  .card:hover {
+    transform: translateY(-4px);
+    border-color: rgba(0,180,200,0.4);
+  }
+  .card-icon {
+    width: 48px;
+    height: 48px;
+    border-radius: 12px;
+    background: linear-gradient(135deg, rgba(34,211,238,0.2), rgba(0,180,200,0.1));
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 20px;
+    font-size: 1.5rem;
+  }
+  .card h3 {
+    font-size: 1.2rem;
+    font-weight: 700;
+    margin-bottom: 10px;
+  }
+  .card p {
+    color: var(--muted);
+    font-size: 0.95rem;
+  }
+
+  /* How it works */
+  .how {
+    padding: 80px 0;
+  }
+  .steps {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 32px;
+    max-width: 900px;
+    margin: 0 auto;
+  }
+  .step {
+    text-align: center;
+  }
+  .step-num {
+    display: inline-flex;
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, var(--teal-bright), var(--teal));
+    color: var(--ink);
+    font-weight: 700;
+    font-size: 1.1rem;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 16px;
+  }
+  .step h3 {
+    font-size: 1.15rem;
+    margin-bottom: 8px;
+    font-weight: 700;
+  }
+  .step p {
+    color: var(--muted);
+    font-size: 0.95rem;
+  }
+
+  /* CTA section */
+  .cta {
+    padding: 80px 24px;
+    margin: 60px 0;
+    text-align: center;
+    background: linear-gradient(135deg, rgba(0,180,200,0.1), rgba(34,211,238,0.05));
+    border: 1px solid rgba(0,180,200,0.2);
+    border-radius: 28px;
+  }
+  .cta h2 {
+    font-size: clamp(1.8rem, 3.5vw, 2.5rem);
+    font-weight: 700;
+    letter-spacing: -0.02em;
+    margin-bottom: 16px;
+  }
+  .cta p {
+    color: var(--muted);
+    margin-bottom: 28px;
+    max-width: 500px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+  form.waitlist {
+    display: flex;
+    gap: 10px;
+    max-width: 440px;
+    margin: 0 auto;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+  form.waitlist input {
+    flex: 1;
+    min-width: 200px;
+    padding: 14px 20px;
+    border-radius: 999px;
+    border: 1px solid rgba(255,255,255,0.2);
+    background: rgba(255,255,255,0.08);
+    color: #fff;
+    font-size: 1rem;
+    outline: none;
+    transition: border-color 0.2s;
+  }
+  form.waitlist input::placeholder { color: rgba(255,255,255,0.5); }
+  form.waitlist input:focus { border-color: var(--teal-bright); }
+  .form-success {
+    display: none;
+    color: var(--teal-bright);
+    font-weight: 600;
+    font-size: 1.05rem;
+    padding: 16px 0;
+  }
+  .form-success.show { display: block; }
+
+  /* Footer */
+  footer {
+    padding: 40px 0 60px;
+    text-align: center;
+    color: rgba(255,255,255,0.4);
+    font-size: 0.9rem;
+    border-top: 1px solid rgba(255,255,255,0.06);
+    margin-top: 40px;
+  }
+  footer a { color: rgba(255,255,255,0.6); text-decoration: none; margin: 0 10px; }
+  footer a:hover { color: #fff; }
+
+  @media (max-width: 640px) {
+    nav .links { display: none; }
+    .hero { padding: 40px 0 60px; }
+    .hero-icon { width: 96px; height: 96px; }
+    .cta { padding: 48px 24px; }
+  }
+</style>
+</head>
+<body>
+
+<div class="wrap">
+  <nav>
+    <div class="brand">
+      <img src="radius-icon-512.png" alt="Radius icon">
+      <span>Radius</span>
+    </div>
+    <div class="links">
+      <a href="#how">How it works</a>
+      <a href="#features">Features</a>
+      <a href="#waitlist">Get early access</a>
+    </div>
+  </nav>
+
+  <section class="hero">
+    <img src="radius-icon-512.png" class="hero-icon" alt="Radius app icon">
+    <h1>Talk to the<br>people near you.</h1>
+    <p class="tagline">
+      Radius is proximity voice chat. Tap once and your voice reaches everyone inside your radius — drivers in the next lane, runners on the same trail, strangers on the same block.
+    </p>
+    <div class="cta-row">
+      <a href="#waitlist" class="btn btn-primary">Get early access →</a>
+      <a href="#how" class="btn btn-ghost">See how it works</a>
+    </div>
+  </section>
+</div>
+
+<div class="wrap">
+  <section class="features" id="features">
+    <h2 class="section-title">Built for the moment.</h2>
+    <p class="section-sub">No accounts. No follows. No feed. Just voices, nearby.</p>
+
+    <div class="grid">
+      <div class="card">
+        <div class="card-icon">📡</div>
+        <h3>Proximity-based</h3>
+        <p>Your voice is heard only by people inside the radius you choose. Move, and your neighbors change.</p>
+      </div>
+      <div class="card">
+        <div class="card-icon">🔒</div>
+        <h3>Peer-to-peer audio</h3>
+        <p>Voice connections are direct between phones and end-to-end encrypted. Our servers never hear you.</p>
+      </div>
+      <div class="card">
+        <div class="card-icon">⚡</div>
+        <h3>Push to talk</h3>
+        <p>Tap and hold to speak. Release to listen. The simplicity of a radio, built for the phone era.</p>
+      </div>
+      <div class="card">
+        <div class="card-icon">🚗</div>
+        <h3>Made for motion</h3>
+        <p>Whether you're driving, biking, or walking, Radius keeps you connected to the people sharing your space.</p>
+      </div>
+      <div class="card">
+        <div class="card-icon">👤</div>
+        <h3>Anonymous by default</h3>
+        <p>You're just a dot on the map. No profiles to fill out, no history to explain.</p>
+      </div>
+      <div class="card">
+        <div class="card-icon">🔇</div>
+        <h3>Mute anything</h3>
+        <p>Block or mute any peer instantly. Silence an annoying voice in one tap.</p>
+      </div>
+    </div>
+  </section>
+</div>
+
+<div class="wrap">
+  <section class="how" id="how">
+    <h2 class="section-title">Three taps to talk.</h2>
+    <p class="section-sub">No setup. No login. Open the app and you're on.</p>
+
+    <div class="steps">
+      <div class="step">
+        <div class="step-num">1</div>
+        <h3>Open the app</h3>
+        <p>See who's nearby on the map. Your radius updates as you move.</p>
+      </div>
+      <div class="step">
+        <div class="step-num">2</div>
+        <h3>Tap a dot</h3>
+        <p>Start a direct call with anyone in range — or broadcast to everyone.</p>
+      </div>
+      <div class="step">
+        <div class="step-num">3</div>
+        <h3>Hold to speak</h3>
+        <p>Press the button, say your piece, release. Real conversation, real-time.</p>
+      </div>
+    </div>
+  </section>
+</div>
+
+<div class="wrap">
+  <section class="cta" id="waitlist">
+    <h2>Be first in your area.</h2>
+    <p>Radius launches on iPhone soon. Drop your email and we'll send you a TestFlight invite.</p>
+    <form class="waitlist" id="waitlist-form" action="https://formspree.io/f/xbdqopyw" method="POST">
+      <input type="email" name="email" placeholder="you@example.com" required>
+      <button type="submit" class="btn btn-primary">Join waitlist</button>
+    </form>
+    <div class="form-success" id="form-success">You're on the list! We'll send a TestFlight invite soon.</div>
+    <script>
+      document.getElementById('waitlist-form').addEventListener('submit', function(e) {
+        e.preventDefault();
+        var form = this;
+        fetch(form.action, {
+          method: 'POST',
+          body: new FormData(form),
+          headers: { 'Accept': 'application/json' }
+        }).then(function(r) {
+          if (r.ok) {
+            form.style.display = 'none';
+            document.getElementById('form-success').classList.add('show');
+          } else {
+            alert('Something went wrong. Please try again.');
+          }
+        }).catch(function() {
+          alert('Something went wrong. Please try again.');
+        });
+      });
+    </script>
+  </section>
+</div>
+
+<footer>
+  <div class="wrap">
+    <p>© 2026 Radius. Proximity voice, reimagined.</p>
+    <p style="margin-top: 10px;">
+      <a href="mailto:contact@talkradius.com">Contact</a>
+      ·
+      <a href="privacy.html">Privacy</a>
+      ·
+      <a href="terms.html">Terms</a>
+    </p>
+  </div>
+</footer>
+
+</body>
+</html>

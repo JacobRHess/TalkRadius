@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Privacy Policy — Radius</title>
+<link rel="icon" type="image/png" href="radius-icon-512.png">
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Text', 'Inter', system-ui, sans-serif;
+    background: linear-gradient(135deg, #0e153a 0%, #0a1a3a 40%, #063340 100%);
+    color: #fff;
+    min-height: 100vh;
+    line-height: 1.7;
+    -webkit-font-smoothing: antialiased;
+  }
+  .wrap { max-width: 720px; margin: 0 auto; padding: 0 24px; }
+  nav { padding: 28px 0; }
+  nav a {
+    color: rgba(255,255,255,0.6);
+    text-decoration: none;
+    font-size: 0.95rem;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    transition: color 0.2s;
+  }
+  nav a:hover { color: #fff; }
+  h1 {
+    font-size: 2rem;
+    font-weight: 700;
+    margin: 20px 0 8px;
+    letter-spacing: -0.02em;
+  }
+  .updated {
+    color: rgba(255,255,255,0.4);
+    font-size: 0.9rem;
+    margin-bottom: 40px;
+  }
+  h2 {
+    font-size: 1.15rem;
+    font-weight: 700;
+    margin: 28px 0 8px;
+  }
+  p {
+    color: rgba(255,255,255,0.7);
+    margin-bottom: 16px;
+    font-size: 0.95rem;
+  }
+  footer {
+    padding: 40px 0;
+    text-align: center;
+    color: rgba(255,255,255,0.3);
+    font-size: 0.85rem;
+    border-top: 1px solid rgba(255,255,255,0.06);
+    margin-top: 60px;
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <nav><a href="index.html">&larr; Back to Radius</a></nav>
+
+  <h1>Privacy Policy</h1>
+  <p class="updated">Last updated: April 2026</p>
+
+  <h2>Overview</h2>
+  <p>Radius is built around a core principle: your conversations are yours. We designed the app so that we physically cannot listen to your calls, and we collect the absolute minimum data needed to make the service work.</p>
+
+  <h2>What We Collect</h2>
+  <p><strong>Approximate location (geohash).</strong> When you go live, your device sends a short geohash cell identifier (roughly 150m accuracy) to our signaling server so nearby users can discover you. Your precise GPS coordinates stay on your device and are never sent to our servers.</p>
+  <p><strong>Temporary connection IDs.</strong> A random, anonymous peer ID is generated each time you open the app. It is not tied to your name, email, phone number, or Apple ID. When you close the app, the ID is discarded.</p>
+  <p><strong>Waitlist email (website only).</strong> If you sign up for early access on our website, your email is collected via Formspree and stored solely for the purpose of sending you a TestFlight invite. We do not share it with third parties or use it for marketing beyond Radius updates.</p>
+
+  <h2>What We Do NOT Collect</h2>
+  <p>We do not collect: your name, phone number, Apple ID, or any account information (there are no accounts). We do not collect voice audio — all calls are peer-to-peer and end-to-end encrypted via WebRTC DTLS-SRTP. We do not use analytics SDKs, advertising trackers, or fingerprinting. We do not sell or share any data with third parties.</p>
+
+  <h2>Voice Data</h2>
+  <p>All voice communication in Radius is transmitted directly between devices using WebRTC with DTLS-SRTP encryption. Audio never touches our servers. Even when a TURN relay is used (for users behind restrictive firewalls), the relay cannot decrypt the audio stream. We have no ability to listen to, record, or access your calls.</p>
+
+  <h2>Location Data</h2>
+  <p>Your precise location is used on-device to calculate distances to nearby peers and to render the map. Only a coarse geohash cell (approximately 150m x 150m) is shared with the signaling server for peer discovery. This geohash is held in memory only and is deleted when you disconnect.</p>
+
+  <h2>Data Retention</h2>
+  <p>Signaling data (geohash cells, peer IDs, connection metadata) is held in server memory only for the duration of your session and is not written to disk or any database. When you go offline or close the app, all data associated with your session is immediately discarded.</p>
+
+  <h2>Third-Party Services</h2>
+  <p>Radius uses the following third-party services:</p>
+  <p><strong>Signaling server</strong> (hosted on Fly.io) — relays connection setup messages only, never audio. <strong>STUN/TURN servers</strong> (optional, e.g. metered.ca) — assist with connectivity behind firewalls; cannot decrypt audio. <strong>Map tiles</strong> (CARTO/OpenStreetMap) — loads map imagery; receives standard HTTP requests with no user identifiers. <strong>Formspree</strong> (website only) — processes waitlist form submissions.</p>
+
+  <h2>Children's Privacy</h2>
+  <p>Radius is not intended for use by anyone under the age of 17. We do not knowingly collect data from minors.</p>
+
+  <h2>Changes to This Policy</h2>
+  <p>We may update this policy from time to time. Changes will be posted on this page with an updated date. Continued use of the app constitutes acceptance of the revised policy.</p>
+
+  <h2>Contact</h2>
+  <p>Questions about this policy? Reach us at <a href="mailto:contact@talkradius.com" style="color: #22d3ee;">contact@talkradius.com</a>.</p>
+</div>
+
+<footer>
+  <div class="wrap">&copy; 2026 Radius. All rights reserved.</div>
+</footer>
+</body>
+</html>
