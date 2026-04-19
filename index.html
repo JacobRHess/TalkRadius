@@ -219,6 +219,10 @@
     grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
     gap: 20px;
   }
+  .grid-2 { grid-template-columns: 1fr; }
+  @media (min-width: 700px) {
+    .grid-2 { grid-template-columns: repeat(2, 1fr); }
+  }
   .card {
     background: var(--card);
     border: 1px solid var(--card-border);
@@ -402,7 +406,7 @@
       <h2 class="section-title">Simple to use. Private by default.</h2>
       <p class="section-lead">A lightweight voice layer for the world right around you.</p>
     </div>
-    <div class="grid">
+    <div class="grid grid-2">
       <div class="card">
         <h3>Local by design</h3>
         <p>Your voice reaches only people inside the radius you choose. As you move, the conversation changes with you.</p>
