@@ -272,6 +272,7 @@
     <div class="links">
       <a href="#how">How it works</a>
       <a href="#features">Features</a>
+      <a href="#security">Security</a>
       <a href="mailto:contact@talkradius.com">Contact</a>
     </div>
   </nav>
@@ -330,6 +331,46 @@
 </div>
 
 <div class="wrap">
+  <section class="features" id="security">
+    <h2 class="section-title">Security, by design.</h2>
+    <p class="section-sub">If you care how your voice gets where it's going — so do we.</p>
+
+    <div class="grid">
+      <div class="card">
+        <div class="card-icon">🔐</div>
+        <h3>End-to-end encrypted calls</h3>
+        <p>Every voice connection uses WebRTC with DTLS-SRTP — the same encrypted media stack browsers and iOS use for secure calls. Keys are negotiated directly between the two phones. Our servers hold no key material and see no audio.</p>
+      </div>
+      <div class="card">
+        <div class="card-icon">🔗</div>
+        <h3>True peer-to-peer</h3>
+        <p>Once two phones agree to talk, audio flows directly between them over a P2P WebRTC session. The signaling server only helps the phones find each other, then steps out of the way.</p>
+      </div>
+      <div class="card">
+        <div class="card-icon">👻</div>
+        <h3>Ephemeral identity</h3>
+        <p>No accounts. No email. No phone number. Each session gets a throwaway peer ID that the server generates and discards when you disconnect. Nothing ties one session to the next.</p>
+      </div>
+      <div class="card">
+        <div class="card-icon">🗺️</div>
+        <h3>Coarse location only</h3>
+        <p>Your phone shares a ~150m geohash cell with the server so nearby users can discover you. Precise GPS coordinates stay on-device and are used only to render the local map.</p>
+      </div>
+      <div class="card">
+        <div class="card-icon">💾</div>
+        <h3>Nothing persisted</h3>
+        <p>Calls are never recorded. Session state lives in server memory only and is wiped on disconnect. There is no database, no logs of what was said, nothing to leak later.</p>
+      </div>
+      <div class="card">
+        <div class="card-icon">🛡️</div>
+        <h3>Hardened signaling</h3>
+        <p>Strict origin allowlisting, per-IP connection caps, per-connection rate limits, server-issued peer IDs to prevent spoofing, and bounded message sizes. And again — no audio ever touches it.</p>
+      </div>
+    </div>
+  </section>
+</div>
+
+<div class="wrap">
   <section class="how" id="how">
     <h2 class="section-title">Three taps to talk.</h2>
     <p class="section-sub">No setup. No login. Open the app and you're on.</p>
@@ -371,6 +412,10 @@
       <a href="privacy.html">Privacy</a>
       ·
       <a href="terms.html">Terms</a>
+    </p>
+    <p style="margin-top: 18px; font-size: 0.85rem; color: rgba(255,255,255,0.5);">
+      If you are interested in advertising or any business inquiries, please email
+      <a href="mailto:contact@talkradius.com" style="color: rgba(255,255,255,0.75);">contact@talkradius.com</a>.
     </p>
   </div>
 </footer>
