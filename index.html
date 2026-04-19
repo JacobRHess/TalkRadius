@@ -4,9 +4,9 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0">
 <title>Radius — Talk with people near you</title>
-<meta name="description" content="Radius is a proximity voice chat app. Tap to talk to drivers, runners, and neighbors within your radius — no accounts, no follows, just voices nearby.">
+<meta name="description" content="Radius is live, local voice chat for people sharing the same space. No accounts. No profiles. No stored conversations. Just real-time voice, nearby.">
 <meta property="og:title" content="Radius — Talk with people near you">
-<meta property="og:description" content="Proximity voice chat. Real-time. No accounts.">
+<meta property="og:description" content="Live, local voice chat. No accounts. No profiles. No stored conversations.">
 <meta property="og:type" content="website">
 <link rel="icon" type="image/png" href="radius-icon-512.png">
 <style>
@@ -15,8 +15,8 @@
     --teal: #00b4c8;
     --teal-bright: #22d3ee;
     --ink: #0a0f28;
-    --paper: #f5f9fb;
     --muted: rgba(255,255,255,0.65);
+    --muted-2: rgba(255,255,255,0.55);
     --card: rgba(255,255,255,0.06);
     --card-border: rgba(255,255,255,0.12);
   }
@@ -34,28 +34,37 @@
   .wrap { max-width: 1100px; margin: 0 auto; padding: 0 24px; }
 
   /* Nav */
-  nav {
-    padding: 28px 0;
+  nav.topnav {
+    padding: 24px 0;
     display: flex;
     align-items: center;
     justify-content: space-between;
+    gap: 16px;
   }
-  .brand {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    font-weight: 700;
-    font-size: 1.1rem;
-    letter-spacing: -0.01em;
-  }
+  .brand { display: flex; align-items: center; gap: 10px; font-weight: 700; font-size: 1.1rem; letter-spacing: -0.01em; }
   .brand img { width: 32px; height: 32px; border-radius: 8px; }
-  nav .links { display: flex; gap: 28px; }
-  nav .links a { color: var(--muted); text-decoration: none; font-size: 0.95rem; transition: color 0.2s; }
-  nav .links a:hover { color: #fff; }
+  nav.topnav .links { display: flex; gap: 26px; }
+  nav.topnav .links a { color: var(--muted); text-decoration: none; font-size: 0.95rem; transition: color 0.2s; }
+  nav.topnav .links a:hover { color: #fff; }
+  .nav-cta {
+    display: inline-flex;
+    align-items: center;
+    padding: 9px 18px;
+    border-radius: 999px;
+    background: rgba(255,255,255,0.1);
+    border: 1px solid rgba(255,255,255,0.18);
+    color: #fff;
+    font-size: 0.9rem;
+    font-weight: 600;
+    text-decoration: none;
+    transition: background 0.15s;
+    white-space: nowrap;
+  }
+  .nav-cta:hover { background: rgba(255,255,255,0.18); }
 
   /* Hero */
   .hero {
-    padding: 60px 0 100px;
+    padding: 36px 0 90px;
     text-align: center;
     position: relative;
   }
@@ -76,8 +85,28 @@
     width: 120px;
     height: 120px;
     border-radius: 28px;
-    margin-bottom: 32px;
+    margin-bottom: 28px;
     box-shadow: 0 20px 60px rgba(0,180,200,0.3), 0 0 0 1px rgba(255,255,255,0.08);
+  }
+  .hero-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 6px 14px;
+    margin-bottom: 22px;
+    border-radius: 999px;
+    background: rgba(255,255,255,0.05);
+    border: 1px solid rgba(255,255,255,0.12);
+    font-size: 0.85rem;
+    color: rgba(255,255,255,0.8);
+  }
+  .hero-badge::before {
+    content: "";
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: #34d399;
+    box-shadow: 0 0 10px rgba(52,211,153,0.8);
   }
   h1 {
     font-size: clamp(2.5rem, 6vw, 4.5rem);
@@ -91,10 +120,10 @@
     -webkit-text-fill-color: transparent;
   }
   .tagline {
-    font-size: clamp(1.1rem, 2vw, 1.4rem);
+    font-size: clamp(1.05rem, 1.8vw, 1.25rem);
     color: var(--muted);
-    max-width: 620px;
-    margin: 0 auto 40px;
+    max-width: 680px;
+    margin: 0 auto 36px;
   }
   .cta-row {
     display: flex;
@@ -134,7 +163,7 @@
     flex-wrap: wrap;
     justify-content: center;
     gap: 10px 14px;
-    max-width: 760px;
+    max-width: 780px;
     margin: 44px auto 0;
   }
   .trust-item {
@@ -158,32 +187,42 @@
     box-shadow: 0 0 10px rgba(34,211,238,0.7);
   }
 
-  /* Features */
-  .features {
-    padding: 60px 0;
+  /* Section primitives */
+  .section { padding: 80px 0; }
+  .eyebrow {
+    font-size: 0.78rem;
+    font-weight: 700;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--teal-bright);
+    margin-bottom: 14px;
   }
   .section-title {
-    text-align: center;
     font-size: clamp(1.8rem, 3.5vw, 2.5rem);
     font-weight: 700;
     letter-spacing: -0.02em;
-    margin-bottom: 12px;
+    line-height: 1.15;
+    margin-bottom: 16px;
   }
-  .section-sub {
-    text-align: center;
+  .section-lead {
     color: var(--muted);
-    margin-bottom: 56px;
+    font-size: 1.05rem;
+    max-width: 640px;
+    margin-bottom: 40px;
   }
+  .section-head { text-align: center; margin-bottom: 48px; }
+  .section-head .section-lead { margin: 0 auto; }
+
   .grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
     gap: 20px;
   }
   .card {
     background: var(--card);
     border: 1px solid var(--card-border);
     border-radius: 20px;
-    padding: 32px 28px;
+    padding: 28px 26px;
     backdrop-filter: blur(10px);
     transition: transform 0.2s, border-color 0.2s;
   }
@@ -191,19 +230,8 @@
     transform: translateY(-4px);
     border-color: rgba(0,180,200,0.4);
   }
-  .card-icon {
-    width: 48px;
-    height: 48px;
-    border-radius: 12px;
-    background: linear-gradient(135deg, rgba(34,211,238,0.2), rgba(0,180,200,0.1));
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    margin-bottom: 20px;
-    font-size: 1.5rem;
-  }
   .card h3 {
-    font-size: 1.2rem;
+    font-size: 1.1rem;
     font-weight: 700;
     margin-bottom: 10px;
   }
@@ -211,66 +239,81 @@
     color: var(--muted);
     font-size: 0.95rem;
   }
+  .card-compact { padding: 20px 22px; }
+  .card-compact .title { font-weight: 600; color: #fff; font-size: 0.98rem; }
 
-  /* How it works */
-  .how {
-    padding: 80px 0;
+  /* Two-col layouts */
+  .two-col {
+    display: grid;
+    gap: 48px;
+    align-items: start;
   }
+  @media (min-width: 900px) {
+    .two-col { grid-template-columns: 1.05fr 0.95fr; gap: 64px; }
+  }
+
+  /* Moments list */
+  .moments { display: grid; gap: 12px; }
+  .moment {
+    padding: 16px 20px;
+    background: rgba(255,255,255,0.04);
+    border: 1px solid rgba(255,255,255,0.09);
+    border-radius: 16px;
+    color: rgba(255,255,255,0.85);
+    font-size: 0.98rem;
+  }
+
+  /* Steps */
   .steps {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-    gap: 32px;
-    max-width: 900px;
-    margin: 0 auto;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: 20px;
   }
   .step {
-    text-align: center;
+    background: rgba(255,255,255,0.04);
+    border: 1px solid rgba(255,255,255,0.1);
+    border-radius: 20px;
+    padding: 28px 26px;
   }
   .step-num {
     display: inline-flex;
-    width: 44px;
-    height: 44px;
+    width: 40px;
+    height: 40px;
     border-radius: 50%;
     background: linear-gradient(135deg, var(--teal-bright), var(--teal));
     color: var(--ink);
     font-weight: 700;
-    font-size: 1.1rem;
+    font-size: 1rem;
     align-items: center;
     justify-content: center;
     margin-bottom: 16px;
   }
-  .step h3 {
-    font-size: 1.15rem;
-    margin-bottom: 8px;
-    font-weight: 700;
-  }
-  .step p {
-    color: var(--muted);
-    font-size: 0.95rem;
-  }
+  .step h3 { font-size: 1.1rem; margin-bottom: 8px; font-weight: 700; }
+  .step p { color: var(--muted); font-size: 0.95rem; }
 
-  /* CTA section */
-  .cta {
-    padding: 80px 24px;
-    margin: 60px 0;
-    text-align: center;
-    background: linear-gradient(135deg, rgba(0,180,200,0.1), rgba(34,211,238,0.05));
-    border: 1px solid rgba(0,180,200,0.2);
+  /* Early access panel */
+  .cta-panel {
+    padding: 56px 40px;
+    margin: 40px 0 60px;
+    background: linear-gradient(135deg, rgba(0,180,200,0.12), rgba(34,211,238,0.05));
+    border: 1px solid rgba(0,180,200,0.25);
     border-radius: 28px;
+    display: grid;
+    gap: 24px;
   }
-  .cta h2 {
-    font-size: clamp(1.8rem, 3.5vw, 2.5rem);
+  @media (min-width: 860px) {
+    .cta-panel { grid-template-columns: 1.3fr 0.7fr; align-items: center; padding: 56px; }
+  }
+  .cta-panel h2 {
+    font-size: clamp(1.6rem, 3vw, 2.2rem);
     font-weight: 700;
     letter-spacing: -0.02em;
-    margin-bottom: 16px;
+    margin-bottom: 14px;
   }
-  .cta p {
-    color: var(--muted);
-    margin-bottom: 28px;
-    max-width: 500px;
-    margin-left: auto;
-    margin-right: auto;
-  }
+  .cta-panel p { color: var(--muted); max-width: 560px; font-size: 1rem; }
+  .cta-panel-actions { display: flex; flex-direction: column; gap: 10px; }
+  .cta-panel-actions .btn { justify-content: center; }
+
   /* Footer */
   footer {
     padding: 40px 0 60px;
@@ -278,127 +321,209 @@
     color: rgba(255,255,255,0.4);
     font-size: 0.9rem;
     border-top: 1px solid rgba(255,255,255,0.06);
-    margin-top: 40px;
+    margin-top: 20px;
   }
   footer a { color: rgba(255,255,255,0.6); text-decoration: none; margin: 0 10px; }
   footer a:hover { color: #fff; }
 
   @media (max-width: 640px) {
-    nav .links { display: none; }
-    .hero { padding: 40px 0 60px; }
+    nav.topnav .links { display: none; }
+    .hero { padding: 20px 0 60px; }
     .hero-icon { width: 96px; height: 96px; }
-    .cta { padding: 48px 24px; }
+    .cta-panel { padding: 40px 28px; margin: 24px 0 40px; }
+    .section { padding: 56px 0; }
   }
 </style>
 </head>
 <body>
 
 <div class="wrap">
-  <nav>
+  <nav class="topnav">
     <div class="brand">
       <img src="radius-icon-512.png" alt="Radius icon">
       <span>Radius</span>
     </div>
     <div class="links">
       <a href="#how">How it works</a>
-      <a href="#features">Features</a>
+      <a href="#privacy">Privacy &amp; safety</a>
       <a href="#security">Security</a>
-      <a href="mailto:contact@talkradius.com">Contact</a>
+      <a href="#early-access">Early access</a>
     </div>
+    <a href="mailto:contact@talkradius.com?subject=Early%20access%20-%20Radius" class="nav-cta">Get early access</a>
   </nav>
 
   <section class="hero">
     <img src="radius-icon-512.png" class="hero-icon" alt="Radius app icon">
+    <span class="hero-badge">Live, local voice chat</span>
     <h1>Talk with<br>people near you.</h1>
     <p class="tagline">
-      Radius is proximity voice chat. Tap once and your voice reaches everyone inside your radius — drivers in the next lane, runners on the same trail, strangers on the same block.
+      Radius is live, local voice chat for people sharing the same space. No accounts. No profiles. No stored conversations. Just real-time voice, nearby.
     </p>
     <div class="cta-row">
-      <a href="mailto:contact@talkradius.com" class="btn btn-primary">Get in touch →</a>
+      <a href="mailto:contact@talkradius.com?subject=Early%20access%20-%20Radius" class="btn btn-primary">Get early access →</a>
       <a href="#how" class="btn btn-ghost">See how it works</a>
     </div>
     <div class="trust-band" aria-label="Privacy at a glance">
-      <span class="trust-item">Approximate location only</span>
-      <span class="trust-item">No accounts or profiles</span>
+      <span class="trust-item">Private by design</span>
       <span class="trust-item">End-to-end encrypted</span>
-      <span class="trust-item">Block anyone instantly</span>
+      <span class="trust-item">No accounts or profiles</span>
+      <span class="trust-item">Block or mute instantly</span>
     </div>
   </section>
 </div>
 
+<!-- Built for shared spaces -->
 <div class="wrap">
-  <section class="features" id="features">
-    <h2 class="section-title">Built for the moment.</h2>
-    <p class="section-sub">No accounts. No follows. No feed. Just voices, nearby.</p>
-
-    <div class="grid">
-      <div class="card">
-        <div class="card-icon">📡</div>
-        <h3>Proximity-based</h3>
-        <p>Your voice is heard only by people inside the radius you choose. Move, and your neighbors change.</p>
+  <section class="section">
+    <div class="two-col">
+      <div>
+        <div class="eyebrow">Built for shared spaces</div>
+        <h2 class="section-title">Nearby conversation, when nearby matters.</h2>
+        <p class="section-lead">
+          Whether you're at an event, on a campus, walking downtown, or riding with a group, Radius helps you talk with the people around you — in the moment, without trading contacts first.
+        </p>
       </div>
-      <div class="card">
-        <div class="card-icon">🔒</div>
-        <h3>Peer-to-peer audio</h3>
-        <p>Voice connections are direct between phones and end-to-end encrypted. Our servers never hear you.</p>
-      </div>
-      <div class="card">
-        <div class="card-icon">⚡</div>
-        <h3>Push to talk</h3>
-        <p>Tap and hold to speak. Release to listen. The simplicity of a radio, built for the phone era.</p>
-      </div>
-      <div class="card">
-        <div class="card-icon">🚗</div>
-        <h3>Made for motion</h3>
-        <p>Whether you're driving, biking, or walking, Radius keeps you connected to the people sharing your space.</p>
-      </div>
-      <div class="card">
-        <div class="card-icon">👤</div>
-        <h3>No accounts, no profiles</h3>
-        <p>No signup, no email, no phone number. You're just a dot on the map — nothing to fill out, nothing to explain.</p>
-      </div>
-      <div class="card">
-        <div class="card-icon">🔇</div>
-        <h3>Mute anything</h3>
-        <p>Block or mute any peer instantly. Silence an annoying voice in one tap.</p>
+      <div class="grid">
+        <div class="card card-compact"><div class="title">Events &amp; festivals</div></div>
+        <div class="card card-compact"><div class="title">Campus life</div></div>
+        <div class="card card-compact"><div class="title">Rides &amp; routes</div></div>
+        <div class="card card-compact"><div class="title">Crowded public spaces</div></div>
       </div>
     </div>
   </section>
 </div>
 
+<!-- Why Radius -->
 <div class="wrap">
-  <section class="features" id="security">
-    <h2 class="section-title">Security, by design.</h2>
-    <p class="section-sub">If you care how your voice gets where it's going — so do we.</p>
-
+  <section class="section" id="features">
+    <div class="section-head">
+      <div class="eyebrow">Why Radius</div>
+      <h2 class="section-title">Simple to use. Private by default.</h2>
+      <p class="section-lead">A lightweight voice layer for the world right around you.</p>
+    </div>
     <div class="grid">
       <div class="card">
-        <div class="card-icon">🔐</div>
+        <h3>Local by design</h3>
+        <p>Your voice reaches only people inside the radius you choose. As you move, the conversation changes with you.</p>
+      </div>
+      <div class="card">
+        <h3>Fast to use</h3>
+        <p>Open the app, set your radius, and start talking in seconds. No onboarding, no feed, no friction.</p>
+      </div>
+      <div class="card">
+        <h3>Private by default</h3>
+        <p>No accounts. No public profiles. No stored conversations. What you say stays between the phones on the call.</p>
+      </div>
+      <div class="card">
+        <h3>Built for control</h3>
+        <p>Mute or block anyone instantly. You decide who gets your attention — and who doesn't.</p>
+      </div>
+    </div>
+  </section>
+</div>
+
+<!-- Three taps to talk -->
+<div class="wrap">
+  <section class="section" id="how">
+    <div class="section-head">
+      <div class="eyebrow">Three taps to talk</div>
+      <h2 class="section-title">Fast enough for the moment.</h2>
+      <p class="section-lead">Use Radius when text is too slow and calling a stranger feels too formal.</p>
+    </div>
+    <div class="steps">
+      <div class="step">
+        <div class="step-num">1</div>
+        <h3>Open Radius</h3>
+        <p>See who's nearby as your location updates — no profile to build, nothing to sign up for.</p>
+      </div>
+      <div class="step">
+        <div class="step-num">2</div>
+        <h3>Choose your radius</h3>
+        <p>Keep it close or expand it depending on the moment — a lane, a block, a venue, a trail.</p>
+      </div>
+      <div class="step">
+        <div class="step-num">3</div>
+        <h3>Talk</h3>
+        <p>Start a direct call with one person, or broadcast to everyone nearby. Hold to speak, release to listen.</p>
+      </div>
+    </div>
+  </section>
+</div>
+
+<!-- Good moments for Radius -->
+<div class="wrap">
+  <section class="section">
+    <div class="two-col">
+      <div>
+        <div class="eyebrow">Good moments for Radius</div>
+        <h2 class="section-title">Built for real-world use.</h2>
+        <p class="section-lead">
+          Radius works best when people share the same space and need fast, lightweight communication.
+        </p>
+      </div>
+      <div class="moments">
+        <div class="moment">Talk with people nearby at events</div>
+        <div class="moment">Coordinate with others moving through the same area</div>
+        <div class="moment">Connect with riders, walkers, or runners sharing your route</div>
+        <div class="moment">Reach people around you without sharing your identity</div>
+        <div class="moment">Start a direct conversation — or speak to everyone in range</div>
+      </div>
+    </div>
+  </section>
+</div>
+
+<!-- Privacy & safety (compact) -->
+<div class="wrap">
+  <section class="section" id="privacy">
+    <div class="two-col">
+      <div>
+        <div class="eyebrow">Privacy &amp; safety</div>
+        <h2 class="section-title">Private enough to trust. Simple enough to use.</h2>
+        <p class="section-lead">
+          Radius is designed to keep the experience lightweight, private, and under your control from the start.
+        </p>
+      </div>
+      <div class="grid">
+        <div class="card card-compact"><div class="title">No accounts or social profiles</div></div>
+        <div class="card card-compact"><div class="title">End-to-end encrypted audio</div></div>
+        <div class="card card-compact"><div class="title">Peer-to-peer voice connections</div></div>
+        <div class="card card-compact"><div class="title">Instant mute and block controls</div></div>
+        <div class="card card-compact"><div class="title">Minimal identity exposure by default</div></div>
+      </div>
+    </div>
+  </section>
+</div>
+
+<!-- Security (technical detail) -->
+<div class="wrap">
+  <section class="section" id="security">
+    <div class="section-head">
+      <div class="eyebrow">Security, by design</div>
+      <h2 class="section-title">If you care how your voice gets where it's going — so do we.</h2>
+      <p class="section-lead">Built on standard, audited cryptography. No proprietary magic.</p>
+    </div>
+    <div class="grid">
+      <div class="card">
         <h3>End-to-end encrypted calls</h3>
         <p>Every voice connection uses WebRTC with DTLS-SRTP — the same encrypted media stack browsers and iOS use for secure calls. Keys are negotiated directly between the two phones. Our servers hold no key material and see no audio.</p>
       </div>
       <div class="card">
-        <div class="card-icon">🔗</div>
         <h3>True peer-to-peer</h3>
         <p>Once two phones agree to talk, audio flows directly between them over a P2P WebRTC session. The signaling server only helps the phones find each other, then steps out of the way.</p>
       </div>
       <div class="card">
-        <div class="card-icon">👻</div>
         <h3>Ephemeral identity</h3>
         <p>No accounts. No email. No phone number. Each session gets a throwaway peer ID that the server generates and discards when you disconnect. Nothing ties one session to the next.</p>
       </div>
       <div class="card">
-        <div class="card-icon">🗺️</div>
         <h3>Coarse location only</h3>
         <p>Your phone shares a ~150m geohash cell with the server so nearby users can discover you. Precise GPS coordinates stay on-device and are used only to render the local map.</p>
       </div>
       <div class="card">
-        <div class="card-icon">💾</div>
         <h3>Nothing persisted</h3>
         <p>Calls are never recorded. Session state lives in server memory only and is wiped on disconnect. There is no database, no logs of what was said, nothing to leak later.</p>
       </div>
       <div class="card">
-        <div class="card-icon">🛡️</div>
         <h3>Hardened signaling</h3>
         <p>Strict origin allowlisting, per-IP connection caps, per-connection rate limits, server-issued peer IDs to prevent spoofing, and bounded message sizes. And again — no audio ever touches it.</p>
       </div>
@@ -406,42 +531,24 @@
   </section>
 </div>
 
+<!-- Early access CTA -->
 <div class="wrap">
-  <section class="how" id="how">
-    <h2 class="section-title">Three taps to talk.</h2>
-    <p class="section-sub">No setup. No login. Open the app and you're on.</p>
-
-    <div class="steps">
-      <div class="step">
-        <div class="step-num">1</div>
-        <h3>Open the app</h3>
-        <p>See who's nearby on the map. Your radius updates as you move.</p>
-      </div>
-      <div class="step">
-        <div class="step-num">2</div>
-        <h3>Tap a dot</h3>
-        <p>Start a direct call with anyone in range — or broadcast to everyone.</p>
-      </div>
-      <div class="step">
-        <div class="step-num">3</div>
-        <h3>Hold to speak</h3>
-        <p>Press the button, say your piece, release. Real conversation, real-time.</p>
-      </div>
+  <section class="cta-panel" id="early-access">
+    <div>
+      <div class="eyebrow">Early access</div>
+      <h2>Radius is launching on iPhone soon.</h2>
+      <p>Want launch updates, early TestFlight access, or to pilot Radius at your campus, event, or community? Reach out and we'll keep you in the loop.</p>
     </div>
-  </section>
-</div>
-
-<div class="wrap">
-  <section class="cta" id="contact">
-    <h2>Get in touch.</h2>
-    <p>Radius launches on iPhone soon. Questions, feedback, or press inquiries — we'd love to hear from you.</p>
-    <a href="mailto:contact@talkradius.com" class="btn btn-primary">contact@talkradius.com</a>
+    <div class="cta-panel-actions">
+      <a href="mailto:contact@talkradius.com?subject=Early%20access%20-%20Radius" class="btn btn-primary">Get early access</a>
+      <a href="mailto:contact@talkradius.com" class="btn btn-ghost">Contact us</a>
+    </div>
   </section>
 </div>
 
 <footer>
   <div class="wrap">
-    <p>© 2026 Radius. Proximity voice, reimagined.</p>
+    <p>© 2026 Radius. Local voice, in real time.</p>
     <p style="margin-top: 10px;">
       <a href="mailto:contact@talkradius.com">Contact</a>
       ·
