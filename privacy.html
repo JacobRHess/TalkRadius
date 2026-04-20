@@ -70,8 +70,8 @@
 
   <h2>What We Collect</h2>
   <p><strong>Approximate location (geohash).</strong> When you go live, your device sends a short geohash cell identifier (roughly 150m accuracy) to our signaling server so nearby users can discover you. Your precise GPS coordinates stay on your device and are never sent to our servers.</p>
-  <p><strong>Temporary connection IDs.</strong> A random, anonymous peer ID is generated each time you open the app. It is not tied to your name, email, phone number, or Apple ID. When you close the app, the ID is discarded.</p>
-  <p><strong>Waitlist email (website only).</strong> If you sign up for early access on our website, your email is collected via Formspree and stored solely for the purpose of sending you a TestFlight invite. We do not share it with third parties or use it for marketing beyond Radius updates.</p>
+  <p><strong>Temporary connection IDs.</strong> A random, pseudonymous peer ID is generated each time you open the app. It is not tied to your name, email, phone number, or Apple ID. When you close the app, the ID is discarded.</p>
+  <p><strong>Reports.</strong> If you use the in-app Report control, your email client sends us a message containing the reported user's session ID and a timestamp. We use these reports to review conduct and enforce our <a href="terms.html" style="color: #22d3ee;">Terms of Use</a>.</p>
 
   <h2>What We Do NOT Collect</h2>
   <p>We do not collect: your name, phone number, Apple ID, or any account information (there are no accounts). We do not collect voice audio — all calls are peer-to-peer and end-to-end encrypted via WebRTC DTLS-SRTP. We do not use analytics SDKs, advertising trackers, or fingerprinting. We do not sell or share any data with third parties.</p>
@@ -87,7 +87,7 @@
 
   <h2>Third-Party Services</h2>
   <p>Radius uses the following third-party services:</p>
-  <p><strong>Signaling server</strong> (hosted on Fly.io) — relays connection setup messages only, never audio. <strong>STUN/TURN servers</strong> (optional, e.g. metered.ca) — assist with connectivity behind firewalls; cannot decrypt audio. <strong>Map tiles</strong> (CARTO/OpenStreetMap) — loads map imagery; receives standard HTTP requests with no user identifiers. <strong>Formspree</strong> (website only) — processes waitlist form submissions.</p>
+  <p><strong>Signaling server</strong> (hosted on Fly.io) — relays connection setup messages only, never audio. <strong>STUN/TURN servers</strong> (optional, e.g. metered.ca) — assist with connectivity behind firewalls; cannot decrypt audio. <strong>Map tiles</strong> (CARTO/OpenStreetMap) — loads map imagery; receives standard HTTP requests with no user identifiers.</p>
 
   <h2>Children's Privacy</h2>
   <p>Radius is not intended for use by anyone under the age of 17. We do not knowingly collect data from minors.</p>
